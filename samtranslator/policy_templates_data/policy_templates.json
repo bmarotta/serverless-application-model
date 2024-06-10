@@ -1275,6 +1275,58 @@
         }
       }
     },
+    "KMSSignPolicy": {
+      "Definition": {
+        "Statement": [
+          {
+            "Action": "kms:Sign",
+            "Effect": "Allow",
+            "Resource": {
+              "Fn::Sub": [
+                "arn:${AWS::Partition}:kms:${AWS::Region}:${AWS::AccountId}:key/${keyId}",
+                {
+                  "keyId": {
+                    "Ref": "KeyId"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Description": "Gives permission to sign with KMS Key",
+      "Parameters": {
+        "KeyId": {
+          "Description": "ID of the KMS Key"
+        }
+      }
+    },
+    "KMSVerifyPolicy": {
+      "Definition": {
+        "Statement": [
+          {
+            "Action": "kms:Verify",
+            "Effect": "Allow",
+            "Resource": {
+              "Fn::Sub": [
+                "arn:${AWS::Partition}:kms:${AWS::Region}:${AWS::AccountId}:key/${keyId}",
+                {
+                  "keyId": {
+                    "Ref": "KeyId"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Description": "Gives permission to verify a signature with KMS Key",
+      "Parameters": {
+        "KeyId": {
+          "Description": "ID of the KMS Key"
+        }
+      }
+    },
     "KinesisCrudPolicy": {
       "Definition": {
         "Statement": [
